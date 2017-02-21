@@ -38,3 +38,40 @@ ggraph(tas_g, layout = 'kk') +
 
 ggraph(tas_g, layout = 'kk') +
   geom_edge_link(aes(colour = as.numeric(factor(segment_))))
+
+
+
+## -------------------------------------------------------------
+
+library(ggraph)
+library(igraph)
+hierarchy <- as.dendrogram(hclust(dist(iris[, 1:4])))
+
+# Classify nodes based on agreement between children
+hierarchy <- tree_apply(hierarchy, function(node, children, ...) {
+  if (is.leaf(node)) {
+    attr(node, 'Class') <- as.character(iris[as.integer(attr(node, 'label')),5])
+  } else {
+    classes <- unique(sapply(children, attr, which = 'Class'))
+    if (length(classes) == 1 && !anyNA(classes)) {
+      attr(node, 'Class') <- classes
+    } else {
+      attr(node, 'Class') <- NA
+    }
+  }
+  attr(node, 'nodePar') <- list(class = attr(node, 'Class'))
+  node
+}, direction = 'up')
+
+hairball <- graph_from_data_frame(highschool)
+
+# Classify nodes based on popularity gain
+pop1957 <- degree(delete_edges(hairball, which(E(hairball)$year == 1957)), 
+                  mode = 'in')
+pop1958 <- degree(delete_edges(hairball, which(E(hairball)$year == 1958)), 
+                  mode = 'in')
+V(hairball)$pop_devel <- ifelse(pop1957 < pop1958, 'increased',
+                                ifelse(pop1957 > pop1958, 'decreased', 
+                                       'unchanged'))
+V(hairball)$popularity <- pmax(pop1957, pop1958)
+E(hairball)$year <- as.character(E(hairball)$year)
