@@ -1,5 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+[![Travis-CI Build Status](https://travis-ci.org/mdsumner/scgraph.svg?branch=master)](https://travis-ci.org/mdsumner/scgraph)
+
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/mdsumner/scgraph?branch=master&svg=true)](https://ci.appveyor.com/project/mdsumner/scgraph)
+
+[![Coverage Status](https://img.shields.io/codecov/c/github/mdsumner/scgraph/master.svg)](https://codecov.io/github/mdsumner/scgraph?branch=master)
+
 scgraph
 =======
 
