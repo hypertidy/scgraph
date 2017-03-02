@@ -1,73 +1,73 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-scgraph
-=======
 
-The goal of scgraph is to convert other stuff to igraph.
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# scgraph
+
+The goal of scgraph is to convert other stuff to igraph. 
 
 (In time scgraph might convert igraph to other stuff. )
 
-Installation
-------------
+
+## Installation
 
 You can install scgraph from github with:
 
-``` r
+```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
 devtools::install_github("mdsumner/scgraph")
 ```
 
-Example
--------
+## Example
 
-This is a basic example which shows you how to create graphs, from non-graph data that has connectivity understood by the 'sc' framework.
+This is a basic example which shows you how to create graphs, from non-graph data that has connectivity understood by the 'sc' framework. 
 
-First generate some line data.
+First generate some line data. 
 
-``` r
+
+```{r generate}
 library(scsf)
-#> Loading required package: sc
 library(raster)
-#> Loading required package: sp
 r <- aggregate(raster(volcano), fact = 10)
 line <- sf::st_as_sf(rasterToContour(r, levels = c(130, 165)))
 ```
 
-Convert to graph, the first is a bit of a mess since we are plotting it in "space"-space. The second does more work to show the topology more clearly with two disconnected lines and the single ring.
+Convert to graph, the first is a bit of a mess since we are plotting it in "space"-space. The second does more work to show the topology more clearly with two disconnected lines and the single ring. 
 
-``` r
+
+```{r example}
 library(scgraph)
 plot(sc_as_igraph(line))
-```
-
-![](README-example-1.png)
-
-``` r
 plot(sc_as_igraph(line, layout = FALSE))
+
 ```
 
-![](README-example-2.png)
 
-``` r
+```{r}
 library(ggraph)
-#> Loading required package: ggplot2
-#> 
-#> Attaching package: 'ggraph'
-#> The following object is masked from 'package:sp':
-#> 
-#>     geometry
+
 ```
 
-Notes
------
+## Notes
 
-AT this link is efforts for threejs:
 
-<https://gist.github.com/mdsumner/0a9207a58898eed30c07fba7ec5e959b>
+AT this link is efforts for threejs: 
+
+https://gist.github.com/mdsumner/0a9207a58898eed30c07fba7ec5e959b
 
 Here's direct ggraph, cannot get it to work with ggmap
 
-``` r
+```R
 #install.packages("ggmap")
 #install.packages("ggraph")
 #devtools::install_github("mdsumner/scsf")
@@ -115,9 +115,11 @@ g <- graph_primitive_layout(prim)
 lyout <- cbind(igraph::V(g)$x, igraph::V(g)$y)
 ggraph(g) +
   geom_edge_link(aes(colour = segment_)) + geom_node_point() 
+
 ```
 
-``` r
+
+```R
 library(ggraph)
 library(igraph)
 #devtools::install_github(c("mdsumner/sc", "mdsumner/scsf"))
