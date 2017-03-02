@@ -21,3 +21,4 @@ Imports:
     tibble
 Remotes: mdsumner/sc
 VignetteBuilder: knitr
+
