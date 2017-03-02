@@ -55,7 +55,12 @@ plot(sc_as_igraph(line, layout = FALSE))
 
 ```{r}
 library(ggraph)
+g <- sc_as_igraph(line)
+ggraph(g) + geom_edge_arc()
 
+ggraph(g) + geom_edge_link() 
+
+plot(line)
 ```
 
 ## Notes

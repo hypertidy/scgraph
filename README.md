@@ -56,7 +56,27 @@ library(ggraph)
 #> The following object is masked from 'package:sp':
 #> 
 #>     geometry
+g <- sc_as_igraph(line)
+ggraph(g) + geom_edge_arc()
+#> Using `nicely` as default layout
 ```
+
+![](README-unnamed-chunk-2-1.png)
+
+``` r
+
+ggraph(g) + geom_edge_link() 
+#> Using `nicely` as default layout
+```
+
+![](README-unnamed-chunk-2-2.png)
+
+``` r
+
+plot(line)
+```
+
+![](README-unnamed-chunk-2-3.png)
 
 Notes
 -----
