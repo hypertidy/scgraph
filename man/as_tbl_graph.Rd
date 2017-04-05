@@ -21,6 +21,7 @@ Convert to tidygraph.
 }
 \examples{
 library(tidygraph)
+data("minimal_mesh", package = "scsf")
 as_tbl_graph(minimal_mesh)
 
 ## some kind of round trip

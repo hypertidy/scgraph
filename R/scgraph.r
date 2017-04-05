@@ -11,11 +11,13 @@
 #' @importFrom igraph graph_from_data_frame V as.igraph
 #' @importFrom sc PRIMITIVE
 #' @importFrom dplyr rename
-#' @importfrom tidygraph as_tbl_graph
+#' @importFrom tidygraph as_tbl_graph
+#' @importMethodsFrom scsf sc_path
 #' @name as.igraph
 #' @export
 #' @export as.igraph
 #' @examples
+#' data("minimal_mesh", package = "scsf")
 #' as.igraph(minimal_mesh)
 as.igraph.PRIMITIVE <- function(x, ..., layout = TRUE) {
   g <- igraph::graph_from_data_frame(dplyr::rename_(x[["segment"]], from = quote(.vertex0), to = quote(.vertex1)))

@@ -18,7 +18,9 @@ RoxygenNote: 6.0.1
 Imports: 
     dplyr,
     igraph,
-    tibble
-Remotes: mdsumner/sc
+    scsf,
+    tibble, 
+    tidygraph
+Remotes: mdsumner/sc, mdsumner/scsf, thomasp85/tidygraph
 VignetteBuilder: knitr
 

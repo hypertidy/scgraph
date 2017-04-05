@@ -6,9 +6,14 @@
 #'
 #' @export 
 #' @name as_tbl_graph
-#' @importFrom tidygraph as_tbl_graph
+#' @importFrom tidygraph as_tbl_graph activate
+#' @importFrom tibble tibble as_tibble
+#' @importFrom dplyr bind_cols %>% 
+#' @importFrom sc sc_uid
+#' @importFrom igraph layout.star
 #' @examples 
 #' library(tidygraph)
+#' data("minimal_mesh", package = "scsf")
 #' as_tbl_graph(minimal_mesh)
 #' 
 #' ## some kind of round trip
