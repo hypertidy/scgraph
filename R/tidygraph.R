@@ -16,7 +16,8 @@
 #' library(tidygraph)
 #' data("minimal_mesh", package = "scsf")
 #' as_tbl_graph(minimal_mesh)
-#' 
+#' ## library(scsf)  ## not quite
+#' ##PRIMITIVE(as_tbl_graph(minimal_mesh)) %>% sf()
 #' ## some kind of round trip
 #' 
 as_tbl_graph.PRIMITIVE <- function(x, ...) {
