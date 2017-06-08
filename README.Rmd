@@ -8,7 +8,6 @@ output: github_document
  
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/mdsumner/scgraph?branch=master&svg=true)](https://ci.appveyor.com/project/mdsumner/scgraph)
 
-[![Coverage Status](https://img.shields.io/codecov/c/github/mdsumner/scgraph/master.svg)](https://codecov.io/github/mdsumner/scgraph?branch=master)
 
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
@@ -61,7 +60,7 @@ plot(as.igraph(line, layout = FALSE))
 
 ```{r}
 library(ggraph)
-g <- sc_as_igraph(line)
+g <- as.igraph(line)
 ggraph(g) + geom_edge_arc()
 
 ggraph(g) + geom_edge_link() 

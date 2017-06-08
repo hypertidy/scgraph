@@ -4,8 +4,6 @@
 
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/mdsumner/scgraph?branch=master&svg=true)](https://ci.appveyor.com/project/mdsumner/scgraph)
 
-[![Coverage Status](https://img.shields.io/codecov/c/github/mdsumner/scgraph/master.svg)](https://codecov.io/github/mdsumner/scgraph?branch=master)
-
 scgraph
 =======
 
@@ -43,13 +41,14 @@ Convert to graph, the first is a bit of a mess since we are plotting it in "spac
 
 ``` r
 library(scgraph)
-plot(sc_as_igraph(line))
+#> No methods found in "scsf" for requests: sc_path
+plot(as.igraph(line))
 ```
 
 ![](README-example-1.png)
 
 ``` r
-plot(sc_as_igraph(line, layout = FALSE))
+plot(as.igraph(line, layout = FALSE))
 ```
 
 ![](README-example-2.png)
@@ -62,7 +61,7 @@ library(ggraph)
 #> The following object is masked from 'package:sp':
 #> 
 #>     geometry
-g <- sc_as_igraph(line)
+g <- as.igraph(line)
 ggraph(g) + geom_edge_arc()
 #> Using `nicely` as default layout
 ```
