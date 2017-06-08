@@ -39,19 +39,37 @@ line <- sf::st_as_sf(rasterToContour(r, levels = c(130, 165)))
 
 Convert to graph, the first is a bit of a mess since we are plotting it in "space"-space. The second does more work to show the topology more clearly with two disconnected lines and the single ring.
 
+(That's the idea.)
+
 ``` r
 library(scgraph)
-#> No methods found in "scsf" for requests: sc_path
-plot(as.igraph(line))
+plot(as.igraph(line), vertex.size = 5)
 ```
 
 ![](README-example-1.png)
 
 ``` r
-plot(as.igraph(line, layout = FALSE))
+plot(as.igraph(line, layout = FALSE), vertex.size = 5)
 ```
 
 ![](README-example-2.png)
+
+Another example. Here the "hole" in the spatial polygon is seen as a disconnected island, and the two polygons that share an edge running in two different path directions are together.
+
+``` r
+data("minimal_mesh", package = "scsf")
+mm <- as.igraph(minimal_mesh)
+plot(mm, main = "layout as geography")
+```
+
+![](README-unnamed-chunk-2-1.png)
+
+``` r
+
+plot(as.igraph(minimal_mesh, layout = FALSE), main = "layout as topology")
+```
+
+![](README-unnamed-chunk-2-2.png)
 
 ``` r
 library(ggraph)
@@ -66,7 +84,7 @@ ggraph(g) + geom_edge_arc()
 #> Using `nicely` as default layout
 ```
 
-![](README-unnamed-chunk-2-1.png)
+![](README-unnamed-chunk-3-1.png)
 
 ``` r
 
@@ -74,14 +92,14 @@ ggraph(g) + geom_edge_link()
 #> Using `nicely` as default layout
 ```
 
-![](README-unnamed-chunk-2-2.png)
+![](README-unnamed-chunk-3-2.png)
 
 ``` r
 
 plot(line)
 ```
 
-![](README-unnamed-chunk-2-3.png)
+![](README-unnamed-chunk-3-3.png)
 
 Notes
 -----
