@@ -12,7 +12,7 @@
 #' @importFrom sc PRIMITIVE
 #' @importFrom dplyr rename
 #' @importFrom tidygraph as_tbl_graph
-#' @importMethodsFrom scsf sc_path
+#' @importFrom scsf sc_path
 #' @name as.igraph
 #' @export
 #' @export as.igraph
