@@ -53,8 +53,8 @@ Convert to graph, the first is a bit of a mess since we are plotting it in "spac
 
 ```{r example}
 library(scgraph)
-plot(sc_as_igraph(line))
-plot(sc_as_igraph(line, layout = FALSE))
+plot(as.igraph(line))
+plot(as.igraph(line, layout = FALSE))
 
 ```
 
