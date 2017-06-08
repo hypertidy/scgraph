@@ -15,6 +15,10 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "README-"
 )
+library(scsf)
+library(raster)
+library(ggplot2)
+library(dplyr)
 ```
 
 # scgraph
@@ -45,6 +49,7 @@ library(scsf)
 library(raster)
 r <- aggregate(raster(volcano), fact = 10)
 line <- sf::st_as_sf(rasterToContour(r, levels = c(130, 165)))
+plot(line)
 ```
 
 Convert to graph, the first is a bit of a mess since we are plotting it in "space"-space. The second does more work to show the topology more clearly with two disconnected lines and the single ring. 
@@ -66,10 +71,20 @@ island, and the two polygons that share an edge running in two different path di
 
 ```{r}
 data("minimal_mesh", package = "scsf")
-mm <- as.igraph(minimal_mesh)
-plot(mm, main = "layout as geography")
+set.seed(10)  ## WIP sc::PRIMITIVE will currently always have new UIDs for the same data
+sc_model <- PRIMITIVE(minimal_mesh)
+ggeog <- as.igraph(sc_model, layout = TRUE)
+gtopo <- as.igraph(sc_model, layout = FALSE)
 
-plot(as.igraph(minimal_mesh, layout = FALSE), main = "layout as topology")
+## can't see how else to easily remove the geographic layout?
+#igraph::V(gtopo)$name <- igraph::V(ggeog)$name
+## drop IDs and use an integer
+#igraph::V(gtopo)$name <- igraph::V(ggeog)$name <- seq_along(igraph::V(ggeog)$name)
+#p <- par(mfrow = c(1, 2))
+library(igraph)
+plot(ggeog, vertex.size = 9, main = "layout as geography", vertex.label.dist= .7, vertex.label.cex = 1)
+plot(gtopo, vertex.size = 9, main = "layout as topology", vertex.label.dist= .7, vertex.label.cex = 1)
+
 ```
 ```{r}
 library(ggraph)
@@ -78,9 +93,27 @@ ggraph(g) + geom_edge_arc()
 
 ggraph(g) + geom_edge_link() 
 
-plot(line)
+
 ```
 
+
+The geom edge link is essentially the same as the map data. 
+```{r}
+library(ggraph)
+ggraph(ggeog) + geom_edge_arc()
+
+ggraph(ggeog) + geom_edge_link() 
+
+## reconstruct the sf object as a ggplot
+## using the sc decomposition forms that scgraph uses
+sc_model <- PRIMITIVE(minimal_mesh)
+library(dplyr)
+## a kind of db-fortify
+tab <- with(sc_model, 
+     object %>% inner_join(path) %>% inner_join(path_link_vertex) %>% inner_join(vertex))
+library(ggplot2)
+ggplot(tab, aes(x_, y_, group = path_, col = object_)) + ggpolypath::geom_polypath()
+```
 ## Notes
 
 

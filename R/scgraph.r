@@ -20,10 +20,15 @@
 #' data("minimal_mesh", package = "scsf")
 #' as.igraph(minimal_mesh)
 as.igraph.PRIMITIVE <- function(x, ..., layout = TRUE) {
-  g <- igraph::graph_from_data_frame(dplyr::rename_(x[["segment"]], from = quote(.vertex0), to = quote(.vertex1)))
+  g <- igraph::graph_from_data_frame(dplyr::rename_(x[["segment"]], from = quote(.vertex0), to = quote(.vertex1))) 
+#                                       dplyr::mutate(from = as.character(as.integer(factor(from, levels = unique(x$path_link_vertex$vertex_)))), 
+#                                              to = as.character(as.integer(factor(to, levels = unique(x$path_link_vertex$vertex_))))))
   if (layout) {
-    igraph::V(g)$x <- x$v$x_[match(names(igraph::V(g)), x$v$vertex_)]
-    igraph::V(g)$y <- x$v$y_[match(names(igraph::V(g)), x$v$vertex_)]
+    #igraph::V(g)$x <- x$v$x_[match(names(igraph::V(g)), x$v$vertex_)]
+    #igraph::V(g)$y <- x$v$y_[match(names(igraph::V(g)), x$v$vertex_)]
+    igraph::V(g)$x <- x$v$x_[match(igraph::V(g)$name, x$v$vertex_)]
+    igraph::V(g)$y <- x$v$y_[match(igraph::V(g)$name, x$v$vertex_)]
+    
   }
   g
 }
