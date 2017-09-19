@@ -86,9 +86,9 @@ line &lt;-<span class="st"> </span>sf<span class="op">::</span><span class="kw">
 <p>Convert to graph, the first is a bit of a mess since we are plotting it in “space”-space. The second does more work to show the topology more clearly with two disconnected lines and the single ring.</p>
 <p>(That’s the idea.)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(scgraph)
-<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(<span class="kw">as.igraph</span>(line), <span class="dt">vertex.size =</span> <span class="dv">5</span>)</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/scgraph/topics/as.igraph">as.igraph</a></span>(line), <span class="dt">vertex.size =</span> <span class="dv">5</span>)</code></pre></div>
 <p><img src="README-example-1.png" width="672"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(<span class="kw">as.igraph</span>(line, <span class="dt">layout =</span> <span class="ot">FALSE</span>), <span class="dt">vertex.size =</span> <span class="dv">5</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/scgraph/topics/as.igraph">as.igraph</a></span>(line, <span class="dt">layout =</span> <span class="ot">FALSE</span>), <span class="dt">vertex.size =</span> <span class="dv">5</span>)</code></pre></div>
 <p><img src="README-example-2.png" width="672"></p>
 <p>Another example. Here the “hole” in the spatial polygon is seen as a disconnected island, and the two polygons that share an edge running in two different path directions are together.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">"minimal_mesh"</span>, <span class="dt">package =</span> <span class="st">"scsf"</span>)

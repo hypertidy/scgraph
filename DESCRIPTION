@@ -13,7 +13,8 @@ Suggests:
     testthat,
     knitr,
     rmarkdown,
-    covr
+    covr, 
+    gibble
 RoxygenNote: 6.0.1
 Imports: 
     dplyr,

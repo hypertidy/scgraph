@@ -106,8 +106,10 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>tidygraph</span>)
-<span class='fu'>library</span>(<span class='no'>scgraph</span>)
+    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>tidygraph</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘tidygraph’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:stats’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    filter</span></div><div class='input'><span class='fu'>library</span>(<span class='no'>scgraph</span>)
 <span class='fu'>data</span>(<span class='st'>"minimal_mesh"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"silicate"</span>)
 <span class='fu'><a href='http://www.rdocumentation.org/packages/tidygraph/topics/tbl_graph'>as_tbl_graph</a></span>(<span class='no'>minimal_mesh</span>)</div><div class='output co'>#&gt; # A tbl_graph: 14 nodes and 16 edges
 #&gt; #
@@ -116,20 +118,20 @@
 #&gt; # Node Data: 14 x 3 (active)
 #&gt;       name     x     y
 #&gt;      &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1 5af51ccb  0.69  0.00
-#&gt; 2 1bd07013  0.80  0.60
-#&gt; 3 be2b724e  1.10  0.63
-#&gt; 4 20c4b41f  1.23  0.30
-#&gt; 5 ac59a685  0.00  0.00
-#&gt; 6 dc0389d4  0.00  1.00
+#&gt; 1 d84f7dbf  0.00   0.0
+#&gt; 2 fa61de46  0.00   1.0
+#&gt; 3 feeed326  0.75   1.0
+#&gt; 4 b384e2f7  1.00   0.8
+#&gt; 5 7d101ece  0.50   0.7
+#&gt; 6 693fa332  0.80   0.6
 #&gt; # ... with 8 more rows
 #&gt; #
 #&gt; # Edge Data: 16 x 4
 #&gt;    from    to     path segment_
 #&gt;   &lt;int&gt; &lt;int&gt;    &lt;chr&gt;    &lt;chr&gt;
-#&gt; 1     1     2 901b3f16 2be94e7e
-#&gt; 2     2     3 901b3f16 47a6e8ad
-#&gt; 3     3     4 901b3f16 94601709
+#&gt; 1     1     2 12dc42c1 3b679722
+#&gt; 2     2     3 12dc42c1 93398429
+#&gt; 3     3     4 12dc42c1 9bbb17b1
 #&gt; # ... with 13 more rows</div><div class='input'>#library(silicate)  ##not quite
 #prim <- PRIMITIVE(as_tbl_graph(minimal_mesh))
 #gibble.PATH <- function(x, ...) {
