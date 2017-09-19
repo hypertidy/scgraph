@@ -4,9 +4,9 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-[![Travis-CI Build Status](https://travis-ci.org/mdsumner/scgraph.svg?branch=master)](https://travis-ci.org/mdsumner/scgraph)
+[![Travis-CI Build Status](https://travis-ci.org/hypertidy/scgraph.svg?branch=master)](https://travis-ci.org/hypertidy/scgraph)
  
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/mdsumner/scgraph?branch=master&svg=true)](https://ci.appveyor.com/project/mdsumner/scgraph)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/hypertidy/scgraph?branch=master&svg=true)](https://ci.appveyor.com/project/hypertidy/scgraph)
 
 
 ```{r, echo = FALSE, include = FALSE}
@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "README-"
 )
-library(scsf)
+library(silicate)
 library(raster)
 library(ggplot2)
 library(dplyr)
@@ -23,9 +23,9 @@ library(dplyr)
 
 # scgraph
 
-The goal of scgraph is to convert anything expressible in [sc form](https://github.com/mdsumner/sc) to igraph, and anything in igraph form to sc form.
+The goal of scgraph is to convert anything expressible in [silicate form](https://github.com/hypertidy/silicate) to igraph, and anything in igraph form to silicate form.
 
-In `sc` general form the data can be offloaded or transmitted via any standard table-based
+In `silicate` general form the data can be offloaded or transmitted via any standard table-based
 data system. 
 
 
@@ -36,7 +36,7 @@ You can install scgraph from github with:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
-devtools::install_github("mdsumner/scgraph")
+devtools::install_github("hypertidy/scgraph")
 ```
 
 ## Example
@@ -47,7 +47,7 @@ First generate some line data.
 
 
 ```{r generate}
-library(scsf)
+library(silicate)
 library(raster)
 r <- aggregate(raster(volcano), fact = 10)
 line <- sf::st_as_sf(rasterToContour(r, levels = c(130, 165)))
@@ -115,5 +115,5 @@ library(dplyr)
 tab <- with(sc_model, 
      object %>% inner_join(path) %>% inner_join(path_link_vertex) %>% inner_join(vertex))
 library(ggplot2)
-ggplot(tab, aes(x_, y_, group = path_, col = object_)) + ggpolypath::geom_polypath()
+ggplot(tab, aes(x_, y_, group = path, col = object)) + ggpolypath::geom_polypath()
 ```

@@ -30,6 +30,6 @@ sc_as_igraph(x, ..., layout = TRUE)
 Only segments from an input model are extracted and used to build the graph.
 }
 \examples{
-data("minimal_mesh", package = "scsf")
+data("minimal_mesh", package = "silicate")
 as.igraph(minimal_mesh)
 }

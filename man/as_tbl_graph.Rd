@@ -21,10 +21,18 @@ Convert to tidygraph.
 }
 \examples{
 library(tidygraph)
-data("minimal_mesh", package = "scsf")
+library(scgraph)
+data("minimal_mesh", package = "silicate")
 as_tbl_graph(minimal_mesh)
-## library(scsf)  ## not quite
-##PRIMITIVE(as_tbl_graph(minimal_mesh)) \%>\% sf()
+#library(silicate)  ##not quite
+#prim <- PRIMITIVE(as_tbl_graph(minimal_mesh))
+#gibble.PATH <- function(x, ...) {
+#inner_join(x[["path"]], x[["path_link_vertex"]] \%>\% group_by(path) \%>\% summarize(nrow = n()) ) \%>\%
+#  dplyr::mutate(ncol = 2, type = "MULTILINESTRING")
+#}
+#library(gibble)
+#geomap <- gibble(prim \%>\% PATH())
+#silicate:::build_sf()
 ## some kind of round trip
 
 }

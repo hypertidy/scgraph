@@ -1,15 +1,15 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Travis-CI Build Status](https://travis-ci.org/mdsumner/scgraph.svg?branch=master)](https://travis-ci.org/mdsumner/scgraph)
+[![Travis-CI Build Status](https://travis-ci.org/hypertidy/scgraph.svg?branch=master)](https://travis-ci.org/hypertidy/scgraph)
 
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/mdsumner/scgraph?branch=master&svg=true)](https://ci.appveyor.com/project/mdsumner/scgraph)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/hypertidy/scgraph?branch=master&svg=true)](https://ci.appveyor.com/project/hypertidy/scgraph)
 
 scgraph
 =======
 
-The goal of scgraph is to convert anything expressible in [sc form](https://github.com/mdsumner/sc) to igraph, and anything in igraph form to sc form.
+The goal of scgraph is to convert anything expressible in [silicate form](https://github.com/hypertidy/silicate) to igraph, and anything in igraph form to silicate form.
 
-In `sc` general form the data can be offloaded or transmitted via any standard table-based data system.
+In `silicate` general form the data can be offloaded or transmitted via any standard table-based data system.
 
 Installation
 ------------
@@ -18,7 +18,7 @@ You can install scgraph from github with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("mdsumner/scgraph")
+devtools::install_github("hypertidy/scgraph")
 ```
 
 Example
@@ -29,7 +29,7 @@ This is a basic example which shows you how to create graphs, from non-graph dat
 First generate some line data.
 
 ``` r
-library(scsf)
+library(silicate)
 library(raster)
 r <- aggregate(raster(volcano), fact = 10)
 line <- sf::st_as_sf(rasterToContour(r, levels = c(130, 165)))
@@ -74,7 +74,7 @@ library(igraph)
 #> Attaching package: 'igraph'
 #> The following objects are masked from 'package:dplyr':
 #> 
-#>     %>%, as_data_frame, groups, union
+#>     as_data_frame, groups, union
 #> The following object is masked from 'package:raster':
 #> 
 #>     union
@@ -144,11 +144,11 @@ library(dplyr)
 ## a kind of db-fortify
 tab <- with(sc_model, 
      object %>% inner_join(path) %>% inner_join(path_link_vertex) %>% inner_join(vertex))
-#> Joining, by = "object_"
-#> Joining, by = "path_"
+#> Joining, by = "object"
+#> Joining, by = "path"
 #> Joining, by = "vertex_"
 library(ggplot2)
-ggplot(tab, aes(x_, y_, group = path_, col = object_)) + ggpolypath::geom_polypath()
+ggplot(tab, aes(x_, y_, group = path, col = object)) + ggpolypath::geom_polypath()
 ```
 
 ![](README-unnamed-chunk-4-3.png)

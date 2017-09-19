@@ -1,11 +1,11 @@
 Package: scgraph
 Title: Common Forms for Graph Structures
-Version: 0.0.1
+Version: 0.0.1.9001
 Authors@R: c(person("Michael D.","Sumner", role = c("aut", "cre"), email = "mdsumner@gmail.com"))
-Description: Provides a generic, common data form for igraph. 
+Description: Provides support for the 'silicate' common form data structure for igraph. 
 Depends:
     R (>= 3.3.2), 
-    sc
+    silicate
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -19,9 +19,8 @@ Imports:
     dplyr,
     igraph,
     rlang,
-    scsf,
     tibble, 
     tidygraph
-Remotes: mdsumner/sc, mdsumner/scsf, thomasp85/tidygraph
+Remotes: hypertidy/silicate, thomasp85/tidygraph
 VignetteBuilder: knitr
 
