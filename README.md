@@ -58,9 +58,9 @@ plot(as.igraph(line, layout = FALSE), vertex.size = 5)
 Another example. Here the "hole" in the spatial polygon is seen as a disconnected island, and the two polygons that share an edge running in two different path directions are together.
 
 ``` r
-data("minimal_mesh", package = "scsf")
-set.seed(10)  ## WIP sc::PRIMITIVE will currently always have new UIDs for the same data
-sc_model <- PRIMITIVE(minimal_mesh)
+data("minimal_mesh", package = "silicate")
+set.seed(10)  ## WIP will currently always have new UIDs for the same data
+sc_model <- SC(minimal_mesh)
 ggeog <- as.igraph(sc_model, layout = TRUE)
 gtopo <- as.igraph(sc_model, layout = FALSE)
 
@@ -139,16 +139,22 @@ ggraph(ggeog) + geom_edge_link()
 
 ## reconstruct the sf object as a ggplot
 ## using the sc decomposition forms that scgraph uses
-sc_model <- PRIMITIVE(minimal_mesh)
+sc_model <- SC(minimal_mesh)
 library(dplyr)
 ## a kind of db-fortify
 tab <- with(sc_model, 
-     object %>% inner_join(path) %>% inner_join(path_link_vertex) %>% inner_join(vertex))
-#> Joining, by = "object"
-#> Joining, by = "path"
-#> Joining, by = "vertex_"
+     object %>% inner_join(object_link_edge) %>% inner_join(edge))
+#> Joining, by = "object_"
+#> Joining, by = "edge_"
+## this used to be PATH based, so was join-able, need a tidier way to express this
+## cascade
+tab$x1 <-sc_model$vertex$x_[ match(tab$.vertex0, sc_model$vertex$vertex_)]
+tab$y1 <-sc_model$vertex$y_[ match(tab$.vertex0, sc_model$vertex$vertex_)]
+tab$x2 <-sc_model$vertex$x_[ match(tab$.vertex1, sc_model$vertex$vertex_)]
+tab$y2 <-sc_model$vertex$y_[ match(tab$.vertex1, sc_model$vertex$vertex_)]
+
 library(ggplot2)
-ggplot(tab, aes(x_, y_, group = path, col = object)) + ggpolypath::geom_polypath()
+ggplot(tab, aes(x1, y1, xend = x2, yend = y2, col = object_)) + geom_segment()
 ```
 
 ![](README-unnamed-chunk-4-3.png)

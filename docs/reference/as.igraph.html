@@ -52,7 +52,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -85,7 +85,7 @@
     <p>Only segments from an input model are extracted and used to build the graph.</p>
     
 
-    <pre class="usage"><span class='co'># S3 method for PRIMITIVE</span>
+    <pre class="usage"><span class='co'># S3 method for SC</span>
 <span class='fu'>as.igraph</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>layout</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
 <span class='co'># S3 method for sf</span>
@@ -98,7 +98,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>input object</p></td>
+      <td><p>input model</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -117,13 +117,13 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='st'>"minimal_mesh"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"silicate"</span>)
-<span class='fu'>as.igraph</span>(<span class='no'>minimal_mesh</span>)</div><div class='output co'>#&gt; IGRAPH a264599 DN-- 14 16 -- 
-#&gt; + attr: name (v/c), x (v/n), y (v/n), path (e/c), segment_ (e/c)
-#&gt; + edges from a264599 (vertex names):
-#&gt;  [1] 70e2b46e-&gt;d28e2613 d28e2613-&gt;a9efcc5b a9efcc5b-&gt;29639ce3 29639ce3-&gt;613d1cc1
-#&gt;  [5] 613d1cc1-&gt;17b0653e 17b0653e-&gt;d51d5bd4 d51d5bd4-&gt;70e2b46e d51d5bd4-&gt;17b0653e
-#&gt;  [9] 17b0653e-&gt;1a3b7cb1 1a3b7cb1-&gt;35e04270 35e04270-&gt;d51d5bd4 afa68406-&gt;9644c01c
-#&gt; [13] 9644c01c-&gt;fcd67d47 fcd67d47-&gt;dc4a16a9 dc4a16a9-&gt;2659e880 2659e880-&gt;afa68406</div></pre>
+<span class='fu'>as.igraph</span>(<span class='no'>minimal_mesh</span>)</div><div class='output co'>#&gt; IGRAPH ec5a75e DN-- 14 15 -- 
+#&gt; + attr: name (v/c), x (v/n), y (v/n), edge_ (e/c)
+#&gt; + edges from ec5a75e (vertex names):
+#&gt;  [1] 3a510a08-&gt;36f16a1b 36f16a1b-&gt;cfc3b388 cfc3b388-&gt;3b2d8c1c 3b2d8c1c-&gt;d6630555
+#&gt;  [5] d6630555-&gt;30f89956 30f89956-&gt;8069ab64 8069ab64-&gt;3a510a08 03e9f003-&gt;37fe4f51
+#&gt;  [9] 37fe4f51-&gt;171ffa01 171ffa01-&gt;4681146a 4681146a-&gt;4eb0d53d 4eb0d53d-&gt;03e9f003
+#&gt; [13] 30f89956-&gt;53135bcc 53135bcc-&gt;eb2b4d00 eb2b4d00-&gt;8069ab64</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -142,7 +142,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

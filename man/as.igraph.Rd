@@ -2,21 +2,21 @@
 % Please edit documentation in R/scgraph.r
 \name{as.igraph}
 \alias{as.igraph}
-\alias{as.igraph.PRIMITIVE}
+\alias{as.igraph.SC}
 \alias{as.igraph}
 \alias{as.igraph.sf}
 \alias{as.igraph}
 \alias{sc_as_igraph}
 \title{Convert model to a graph.}
 \usage{
-\method{as.igraph}{PRIMITIVE}(x, ..., layout = TRUE)
+\method{as.igraph}{SC}(x, ..., layout = TRUE)
 
 \method{as.igraph}{sf}(x, ..., layout = TRUE)
 
 sc_as_igraph(x, ..., layout = TRUE)
 }
 \arguments{
-\item{x}{input object}
+\item{x}{input model}
 
 \item{...}{arguments passed to methods}
 

@@ -52,7 +52,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -85,7 +85,7 @@
     <p>Convert to tidygraph.</p>
     
 
-    <pre class="usage"><span class='co'># S3 method for PRIMITIVE</span>
+    <pre class="usage"><span class='co'># S3 method for SC</span>
 <span class='fu'>as_tbl_graph</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for sf</span>
@@ -107,43 +107,43 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>tidygraph</span>)</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘tidygraph’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:stats’:</span>
+#&gt; <span class='message'>Attaching package: ‘tidygraph’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:testthat’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    matches</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:stats’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    filter</span></div><div class='input'><span class='fu'>library</span>(<span class='no'>scgraph</span>)
 <span class='fu'>data</span>(<span class='st'>"minimal_mesh"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"silicate"</span>)
-<span class='fu'><a href='http://www.rdocumentation.org/packages/tidygraph/topics/tbl_graph'>as_tbl_graph</a></span>(<span class='no'>minimal_mesh</span>)</div><div class='output co'>#&gt; # A tbl_graph: 14 nodes and 16 edges
+<span class='fu'><a href='http://www.rdocumentation.org/packages/tidygraph/topics/tbl_graph'>as_tbl_graph</a></span>(<span class='no'>minimal_mesh</span>)</div><div class='output co'>#&gt; # A tbl_graph: 14 nodes and 15 edges
 #&gt; #
 #&gt; # A directed simple graph with 2 components
 #&gt; #
 #&gt; # Node Data: 14 x 3 (active)
-#&gt;       name     x     y
-#&gt;      &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1 d84f7dbf  0.00   0.0
-#&gt; 2 fa61de46  0.00   1.0
-#&gt; 3 feeed326  0.75   1.0
-#&gt; 4 b384e2f7  1.00   0.8
-#&gt; 5 7d101ece  0.50   0.7
-#&gt; 6 693fa332  0.80   0.6
+#&gt;   name         x     y
+#&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
+#&gt; 1 ff9a4dd9 0     0    
+#&gt; 2 f5ce47c4 0     1.00 
+#&gt; 3 5a6f5254 0.750 1.00 
+#&gt; 4 b594b963 1.00  0.800
+#&gt; 5 cc468a38 0.500 0.700
+#&gt; 6 2b7e36e2 0.800 0.600
 #&gt; # ... with 8 more rows
 #&gt; #
-#&gt; # Edge Data: 16 x 4
-#&gt;    from    to     path segment_
-#&gt;   &lt;int&gt; &lt;int&gt;    &lt;chr&gt;    &lt;chr&gt;
-#&gt; 1     1     2 12dc42c1 3b679722
-#&gt; 2     2     3 12dc42c1 93398429
-#&gt; 3     3     4 12dc42c1 9bbb17b1
-#&gt; # ... with 13 more rows</div><div class='input'>#library(silicate)  ##not quite
-#prim <- PRIMITIVE(as_tbl_graph(minimal_mesh))
-#gibble.PATH <- function(x, ...) {
-#inner_join(x[["path"]], x[["path_link_vertex"]] %>% group_by(path) %>% summarize(nrow = n()) ) %>%
-#  dplyr::mutate(ncol = 2, type = "MULTILINESTRING")
-#}
-#library(gibble)
-#geomap <- gibble(prim %>% PATH())
-#silicate:::build_sf()
-## some kind of round trip
-
-</div></pre>
+#&gt; # Edge Data: 15 x 3
+#&gt;    from    to edge_   
+#&gt;   &lt;int&gt; &lt;int&gt; &lt;chr&gt;   
+#&gt; 1     1     2 da9d149c
+#&gt; 2     2     3 3b1a9c88
+#&gt; 3     3     4 dc593c84
+#&gt; # ... with 12 more rows</div><div class='input'><span class='fu'>library</span>(<span class='no'>silicate</span>)
+<span class='no'>umodel</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='SC.html'>SC</a></span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/tidygraph/topics/tbl_graph'>as_tbl_graph</a></span>(<span class='no'>minimal_mesh</span>))
+<span class='co'>#gibble.PATH &lt;- function(x, ...) {</span>
+<span class='co'>#inner_join(x[["path"]], x[["path_link_vertex"]] %&gt;% group_by(path) %&gt;% summarize(nrow = n()) ) %&gt;%</span>
+<span class='co'>#  dplyr::mutate(ncol = 2, type = "MULTILINESTRING")</span>
+<span class='co'>#}</span>
+<span class='co'>#library(gibble)</span>
+<span class='co'>#geomap &lt;- gibble(prim %&gt;% PATH())</span>
+<span class='co'>#silicate:::build_sf()</span>
+<span class='co'>## some kind of round trip</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -162,7 +162,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
