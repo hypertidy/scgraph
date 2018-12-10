@@ -20,11 +20,9 @@
 #' as.igraph(minimal_mesh)
 as.igraph.SC <- function(x, ..., layout = TRUE) {
   g <- igraph::graph_from_data_frame(dplyr::rename_(x[["edge"]], from = quote(.vx0), to = quote(.vx1))) 
-#                                       dplyr::mutate(from = as.character(as.integer(factor(from, levels = unique(x$path_link_vertex$vertex_)))), 
-#                                              to = as.character(as.integer(factor(to, levels = unique(x$path_link_vertex$vertex_))))))
   if (layout) {
-    igraph::V(g)$x <- x$v$x_[match(igraph::V(g)$name, x$vertex$vertex_)]
-    igraph::V(g)$y <- x$v$y_[match(igraph::V(g)$name, x$vertex$vertex_)]
+    igraph::V(g)$x <- x$vertex$x_[match(igraph::V(g)$name, x$vertex$vertex_)]
+    igraph::V(g)$y <- x$vertex$y_[match(igraph::V(g)$name, x$vertex$vertex_)]
     
   }
   g
@@ -40,5 +38,18 @@ as.igraph.sf <- function(x, ..., layout = TRUE) {
 sc_as_igraph <- function(x, ..., layout = TRUE) {
   as.igraph.SC(x, ..., layout = TRUE)
 }
-
-
+#' @export
+#' @name as.igraph
+as.igraph.SC0 <- function(x, ..., layout = TRUE) {
+  nr <- unlist(lapply(x$object$topology_, nrow), use.names = FALSE)
+  edge <- do.call(rbind, x$object$topology_)
+  edge$object <- rep(seq_len(nrow(x$object)), nr)
+  names(edge) <- c("from", "to", "object")
+  g <- igraph::graph_from_data_frame(edge)
+  if (layout) {
+    igraph::V(g)$x <- x$vertex$x_[as.integer(igraph::V(g)$name)]
+    igraph::V(g)$y <- x$vertex$y_[as.integer(igraph::V(g)$name)]
+  
+  }
+  g
+}
