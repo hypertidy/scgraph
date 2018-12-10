@@ -19,7 +19,7 @@
 #' data("minimal_mesh", package = "silicate")
 #' as.igraph(minimal_mesh)
 as.igraph.SC <- function(x, ..., layout = TRUE) {
-  g <- igraph::graph_from_data_frame(dplyr::rename_(x[["edge"]], from = quote(.vertex0), to = quote(.vertex1))) 
+  g <- igraph::graph_from_data_frame(dplyr::rename_(x[["edge"]], from = quote(.vx0), to = quote(.vx1))) 
 #                                       dplyr::mutate(from = as.character(as.integer(factor(from, levels = unique(x$path_link_vertex$vertex_)))), 
 #                                              to = as.character(as.integer(factor(to, levels = unique(x$path_link_vertex$vertex_))))))
   if (layout) {

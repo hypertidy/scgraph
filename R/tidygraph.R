@@ -44,13 +44,13 @@ sc_object.tbl_graph <- function(x, ...) {
 #' @importFrom silicate sc_edge
 sc_edge.tbl_graph <- function(x, ...) {
   out <- igraph::as_edgelist(x)
-  tibble::tibble(.vertex0 = out[,1], .vertex1 = out[, 2], edge_ = sc_uid(nrow(out)))
+  tibble::tibble(.vx0 = out[,1], .vx1 = out[, 2], edge_ = sc_uid(nrow(out)))
 }
 #' @importFrom silicate sc_vertex
 sc_vertex.tbl_graph <- function(x, ...) {
   outm <- igraph::layout.auto(x)
   edge <- sc_edge(x)
-  out <- tibble::tibble(vertex_ = unique(c(edge$.vertex0, edge$.vertex1)))
+  out <- tibble::tibble(vertex_ = unique(c(edge$.vx0, edge$.vx1)))
   out$x_ <- outm[,1]
   out$y_ <- outm[,2]
   out[c("x_", "y_", "vertex_")]

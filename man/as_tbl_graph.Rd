@@ -3,7 +3,6 @@
 \name{as_tbl_graph}
 \alias{as_tbl_graph}
 \alias{as_tbl_graph.SC}
-\alias{as_tbl_graph}
 \alias{as_tbl_graph.sf}
 \title{Convert to tidygraph.}
 \usage{

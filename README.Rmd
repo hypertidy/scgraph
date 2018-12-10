@@ -116,10 +116,10 @@ tab <- with(sc_model,
      object %>% inner_join(object_link_edge) %>% inner_join(edge))
 ## this used to be PATH based, so was join-able, need a tidier way to express this
 ## cascade
-tab$x1 <-sc_model$vertex$x_[ match(tab$.vertex0, sc_model$vertex$vertex_)]
-tab$y1 <-sc_model$vertex$y_[ match(tab$.vertex0, sc_model$vertex$vertex_)]
-tab$x2 <-sc_model$vertex$x_[ match(tab$.vertex1, sc_model$vertex$vertex_)]
-tab$y2 <-sc_model$vertex$y_[ match(tab$.vertex1, sc_model$vertex$vertex_)]
+tab$x1 <-sc_model$vertex$x_[ match(tab$.vx0, sc_model$vertex$vertex_)]
+tab$y1 <-sc_model$vertex$y_[ match(tab$.vx0, sc_model$vertex$vertex_)]
+tab$x2 <-sc_model$vertex$x_[ match(tab$.vx1, sc_model$vertex$vertex_)]
+tab$y2 <-sc_model$vertex$y_[ match(tab$.vx1, sc_model$vertex$vertex_)]
 
 library(ggplot2)
 ggplot(tab, aes(x1, y1, xend = x2, yend = y2, col = object_)) + geom_segment()

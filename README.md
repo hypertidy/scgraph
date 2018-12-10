@@ -1,18 +1,22 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Travis-CI Build Status](https://travis-ci.org/hypertidy/scgraph.svg?branch=master)](https://travis-ci.org/hypertidy/scgraph)
 
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/hypertidy/scgraph?branch=master&svg=true)](https://ci.appveyor.com/project/hypertidy/scgraph)
+[![Travis-CI Build
+Status](https://travis-ci.org/hypertidy/scgraph.svg?branch=master)](https://travis-ci.org/hypertidy/scgraph)
 
-scgraph
-=======
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/hypertidy/scgraph?branch=master&svg=true)](https://ci.appveyor.com/project/hypertidy/scgraph)
 
-The goal of scgraph is to convert anything expressible in [silicate form](https://github.com/hypertidy/silicate) to igraph, and anything in igraph form to silicate form.
+# scgraph
 
-In `silicate` general form the data can be offloaded or transmitted via any standard table-based data system.
+The goal of scgraph is to convert anything expressible in [silicate
+form](https://github.com/hypertidy/silicate) to igraph, and anything in
+igraph form to silicate form.
 
-Installation
-------------
+In `silicate` general form the data can be offloaded or transmitted via
+any standard table-based data system.
+
+## Installation
 
 You can install scgraph from github with:
 
@@ -21,10 +25,10 @@ You can install scgraph from github with:
 devtools::install_github("hypertidy/scgraph")
 ```
 
-Example
--------
+## Example
 
-This is a basic example which shows you how to create graphs, from non-graph data that has connectivity understood by the 'sc' framework.
+This is a basic example which shows you how to create graphs, from
+non-graph data that has connectivity understood by the ‘sc’ framework.
 
 First generate some line data.
 
@@ -36,26 +40,30 @@ line <- sf::st_as_sf(rasterToContour(r, levels = c(130, 165)))
 plot(line)
 ```
 
-![](README-generate-1.png)
+![](README-generate-1.png)<!-- -->
 
-Convert to graph, the first is a bit of a mess since we are plotting it in "space"-space. The second does more work to show the topology more clearly with two disconnected lines and the single ring.
+Convert to graph, the first is a bit of a mess since we are plotting it
+in “space”-space. The second does more work to show the topology more
+clearly with two disconnected lines and the single ring.
 
-(That's the idea.)
+(That’s the idea.)
 
 ``` r
 library(scgraph)
 plot(as.igraph(line), vertex.size = 5)
 ```
 
-![](README-example-1.png)
+![](README-example-1.png)<!-- -->
 
 ``` r
 plot(as.igraph(line, layout = FALSE), vertex.size = 5)
 ```
 
-![](README-example-2.png)
+![](README-example-2.png)<!-- -->
 
-Another example. Here the "hole" in the spatial polygon is seen as a disconnected island, and the two polygons that share an edge running in two different path directions are together.
+Another example. Here the “hole” in the spatial polygon is seen as a
+disconnected island, and the two polygons that share an edge running in
+two different path directions are together.
 
 ``` r
 data("minimal_mesh", package = "silicate")
@@ -87,13 +95,13 @@ library(igraph)
 plot(ggeog, vertex.size = 9, main = "layout as geography", vertex.label.dist= .7, vertex.label.cex = 1)
 ```
 
-![](README-unnamed-chunk-2-1.png)
+![](README-unnamed-chunk-2-1.png)<!-- -->
 
 ``` r
 plot(gtopo, vertex.size = 9, main = "layout as topology", vertex.label.dist= .7, vertex.label.cex = 1)
 ```
 
-![](README-unnamed-chunk-2-2.png)
+![](README-unnamed-chunk-2-2.png)<!-- -->
 
 ``` r
 library(ggraph)
@@ -107,7 +115,7 @@ ggraph(g) + geom_edge_arc()
 #> Using `nicely` as default layout
 ```
 
-![](README-unnamed-chunk-3-1.png)
+![](README-unnamed-chunk-3-1.png)<!-- -->
 
 ``` r
 
@@ -115,7 +123,7 @@ ggraph(g) + geom_edge_link()
 #> Using `nicely` as default layout
 ```
 
-![](README-unnamed-chunk-3-2.png)
+![](README-unnamed-chunk-3-2.png)<!-- -->
 
 The geom edge link is essentially the same as the map data.
 
@@ -125,7 +133,7 @@ ggraph(ggeog) + geom_edge_arc()
 #> Using `nicely` as default layout
 ```
 
-![](README-unnamed-chunk-4-1.png)
+![](README-unnamed-chunk-4-1.png)<!-- -->
 
 ``` r
 
@@ -133,7 +141,7 @@ ggraph(ggeog) + geom_edge_link()
 #> Using `nicely` as default layout
 ```
 
-![](README-unnamed-chunk-4-2.png)
+![](README-unnamed-chunk-4-2.png)<!-- -->
 
 ``` r
 
@@ -148,13 +156,13 @@ tab <- with(sc_model,
 #> Joining, by = "edge_"
 ## this used to be PATH based, so was join-able, need a tidier way to express this
 ## cascade
-tab$x1 <-sc_model$vertex$x_[ match(tab$.vertex0, sc_model$vertex$vertex_)]
-tab$y1 <-sc_model$vertex$y_[ match(tab$.vertex0, sc_model$vertex$vertex_)]
-tab$x2 <-sc_model$vertex$x_[ match(tab$.vertex1, sc_model$vertex$vertex_)]
-tab$y2 <-sc_model$vertex$y_[ match(tab$.vertex1, sc_model$vertex$vertex_)]
+tab$x1 <-sc_model$vertex$x_[ match(tab$.vx0, sc_model$vertex$vertex_)]
+tab$y1 <-sc_model$vertex$y_[ match(tab$.vx0, sc_model$vertex$vertex_)]
+tab$x2 <-sc_model$vertex$x_[ match(tab$.vx1, sc_model$vertex$vertex_)]
+tab$y2 <-sc_model$vertex$y_[ match(tab$.vx1, sc_model$vertex$vertex_)]
 
 library(ggplot2)
 ggplot(tab, aes(x1, y1, xend = x2, yend = y2, col = object_)) + geom_segment()
 ```
 
-![](README-unnamed-chunk-4-3.png)
+![](README-unnamed-chunk-4-3.png)<!-- -->

@@ -3,9 +3,7 @@
 \name{as.igraph}
 \alias{as.igraph}
 \alias{as.igraph.SC}
-\alias{as.igraph}
 \alias{as.igraph.sf}
-\alias{as.igraph}
 \alias{sc_as_igraph}
 \title{Convert model to a graph.}
 \usage{
