@@ -136,7 +136,7 @@
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    filter</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>scgraph</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='st'>"minimal_mesh"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"silicate"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/scgraph/topics/as_tbl_graph'>as_tbl_graph</a></span>(<span class='no'>minimal_mesh</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tbl_graph: 14 nodes and 15 edges
+<span class='fu'>as_tbl_graph</span>(<span class='no'>minimal_mesh</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tbl_graph: 14 nodes and 15 edges
 #&gt; #
 #&gt; # A directed acyclic simple graph with 2 components
 #&gt; #
@@ -158,7 +158,7 @@
 #&gt; </span><span style='color: #555555;'>2</span><span>     2     3 LpKNkJ
 #&gt; </span><span style='color: #555555;'>3</span><span>     3    12 zzwqw7
 #&gt; </span><span style='color: #555555;'># ... with 12 more rows</span><span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>silicate</span>)
-<span class='no'>umodel</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='SC.html'>SC</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/scgraph/topics/as_tbl_graph'>as_tbl_graph</a></span>(<span class='no'>minimal_mesh</span>))
+<span class='no'>umodel</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='SC.html'>SC</a></span>(<span class='fu'>as_tbl_graph</span>(<span class='no'>minimal_mesh</span>))
 <span class='co'>#gibble.PATH &lt;- function(x, ...) {</span>
 <span class='co'>#inner_join(x[["path"]], x[["path_link_vertex"]] %&gt;% group_by(path) %&gt;% summarize(nrow = n()) ) %&gt;%</span>
 <span class='co'>#  dplyr::mutate(ncol = 2, type = "MULTILINESTRING")</span>

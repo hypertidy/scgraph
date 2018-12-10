@@ -124,3 +124,26 @@ tab$y2 <-sc_model$vertex$y_[ match(tab$.vx1, sc_model$vertex$vertex_)]
 library(ggplot2)
 ggplot(tab, aes(x1, y1, xend = x2, yend = y2, col = object_)) + geom_segment()
 ```
+
+
+Example with DiagrammeR. 
+
+```{r}
+library(DiagrammeR)
+library(silicate)
+op <- options(warn = -1)  ## ugly warning from rlang
+g <-
+  create_graph() %>%
+  add_nodes_from_table(
+    table = sc_model$vertex,
+    label_col = vertex_) %>% 
+  add_edges_from_table(
+    table = sc_model$edge,
+    from_col = .vx0,
+    to_col = .vx1, 
+    from_to_map = label)
+
+render_graph(g)
+options(op)
+
+```

@@ -166,3 +166,30 @@ ggplot(tab, aes(x1, y1, xend = x2, yend = y2, col = object_)) + geom_segment()
 ```
 
 ![](README-unnamed-chunk-4-3.png)<!-- -->
+
+Example with DiagrammeR.
+
+``` r
+library(DiagrammeR)
+#> 
+#> Attaching package: 'DiagrammeR'
+#> The following object is masked from 'package:ggraph':
+#> 
+#>     get_edges
+library(silicate)
+op <- options(warn = -1)
+g <-
+  create_graph() %>%
+  add_nodes_from_table(
+    table = sc_model$vertex,
+    label_col = vertex_) %>% 
+  add_edges_from_table(
+    table = sc_model$edge,
+    from_col = .vx0,
+    to_col = .vx1, 
+    from_to_map = label)
+
+render_graph(g)
+```
+
+![](README-unnamed-chunk-5-1.png)<!-- -->

@@ -89,16 +89,16 @@
 <p>Convert to graph, the first is a bit of a mess since we are plotting it in “space”-space. The second does more work to show the topology more clearly with two disconnected lines and the single ring.</p>
 <p>(That’s the idea.)</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(scgraph)</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/scgraph/topics/as.igraph">as.igraph</a></span>(line), <span class="dt">vertex.size =</span> <span class="dv">5</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(<span class="kw"><a href="reference/as.igraph.html">as.igraph</a></span>(line), <span class="dt">vertex.size =</span> <span class="dv">5</span>)</a></code></pre></div>
 <p><img src="README-example-1.png" width="700"></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/scgraph/topics/as.igraph">as.igraph</a></span>(line, <span class="dt">layout =</span> <span class="ot">FALSE</span>), <span class="dt">vertex.size =</span> <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(<span class="kw"><a href="reference/as.igraph.html">as.igraph</a></span>(line, <span class="dt">layout =</span> <span class="ot">FALSE</span>), <span class="dt">vertex.size =</span> <span class="dv">5</span>)</a></code></pre></div>
 <p><img src="README-example-2.png" width="700"></p>
 <p>Another example. Here the “hole” in the spatial polygon is seen as a disconnected island, and the two polygons that share an edge running in two different path directions are together.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"minimal_mesh"</span>, <span class="dt">package =</span> <span class="st">"silicate"</span>)</a>
 <a class="sourceLine" id="cb5-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">10</span>)  <span class="co">## WIP will currently always have new UIDs for the same data</span></a>
 <a class="sourceLine" id="cb5-3" title="3">sc_model &lt;-<span class="st"> </span><span class="kw"><a href="reference/SC.html">SC</a></span>(minimal_mesh)</a>
-<a class="sourceLine" id="cb5-4" title="4">ggeog &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/igraph/topics/as.igraph">as.igraph</a></span>(sc_model, <span class="dt">layout =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb5-5" title="5">gtopo &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/igraph/topics/as.igraph">as.igraph</a></span>(sc_model, <span class="dt">layout =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb5-4" title="4">ggeog &lt;-<span class="st"> </span><span class="kw"><a href="reference/as.igraph.html">as.igraph</a></span>(sc_model, <span class="dt">layout =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb5-5" title="5">gtopo &lt;-<span class="st"> </span><span class="kw"><a href="reference/as.igraph.html">as.igraph</a></span>(sc_model, <span class="dt">layout =</span> <span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb5-6" title="6"></a>
 <a class="sourceLine" id="cb5-7" title="7"><span class="co">## can't see how else to easily remove the geographic layout?</span></a>
 <a class="sourceLine" id="cb5-8" title="8"><span class="co">#igraph::V(gtopo)$name &lt;- igraph::V(ggeog)$name</span></a>
@@ -130,7 +130,7 @@
 <a class="sourceLine" id="cb7-4" title="4"><span class="co">#&gt; The following object is masked from 'package:sp':</span></a>
 <a class="sourceLine" id="cb7-5" title="5"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt;     geometry</span></a>
-<a class="sourceLine" id="cb7-7" title="7">g &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/igraph/topics/as.igraph">as.igraph</a></span>(line)</a>
+<a class="sourceLine" id="cb7-7" title="7">g &lt;-<span class="st"> </span><span class="kw"><a href="reference/as.igraph.html">as.igraph</a></span>(line)</a>
 <a class="sourceLine" id="cb7-8" title="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/ggraph">ggraph</a></span>(g) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_edge_arc">geom_edge_arc</a></span>()</a>
 <a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt; Using `nicely` as default layout</span></a></code></pre></div>
 <p><img src="README-unnamed-chunk-3-1.png" width="700"></p>
@@ -167,6 +167,29 @@
 <a class="sourceLine" id="cb11-18" title="18"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
 <a class="sourceLine" id="cb11-19" title="19"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(tab, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x1, y1, <span class="dt">xend =</span> x2, <span class="dt">yend =</span> y2, <span class="dt">col =</span> object_)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span>()</a></code></pre></div>
 <p><img src="README-unnamed-chunk-4-3.png" width="700"></p>
+<p>Example with DiagrammeR.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(DiagrammeR)</a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="co">#&gt; Attaching package: 'DiagrammeR'</span></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="co">#&gt; The following object is masked from 'package:ggraph':</span></a>
+<a class="sourceLine" id="cb12-5" title="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb12-6" title="6"><span class="co">#&gt;     get_edges</span></a>
+<a class="sourceLine" id="cb12-7" title="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(silicate)</a>
+<a class="sourceLine" id="cb12-8" title="8">op &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">warn =</span> <span class="dv">-1</span>)  <span class="co">## ugly warning from rlang</span></a>
+<a class="sourceLine" id="cb12-9" title="9">g &lt;-</a>
+<a class="sourceLine" id="cb12-10" title="10"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/DiagrammeR/topics/create_graph">create_graph</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-11" title="11"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/DiagrammeR/topics/add_nodes_from_table">add_nodes_from_table</a></span>(</a>
+<a class="sourceLine" id="cb12-12" title="12">    <span class="dt">table =</span> sc_model<span class="op">$</span>vertex,</a>
+<a class="sourceLine" id="cb12-13" title="13">    <span class="dt">label_col =</span> vertex_) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-14" title="14"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/DiagrammeR/topics/add_edges_from_table">add_edges_from_table</a></span>(</a>
+<a class="sourceLine" id="cb12-15" title="15">    <span class="dt">table =</span> sc_model<span class="op">$</span>edge,</a>
+<a class="sourceLine" id="cb12-16" title="16">    <span class="dt">from_col =</span> .vx0,</a>
+<a class="sourceLine" id="cb12-17" title="17">    <span class="dt">to_col =</span> .vx1, </a>
+<a class="sourceLine" id="cb12-18" title="18">    <span class="dt">from_to_map =</span> label)</a>
+<a class="sourceLine" id="cb12-19" title="19"></a>
+<a class="sourceLine" id="cb12-20" title="20"><span class="kw"><a href="https://www.rdocumentation.org/packages/DiagrammeR/topics/render_graph">render_graph</a></span>(g)</a></code></pre></div>
+<div id="htmlwidget-4406be778524581aad67" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4406be778524581aad67">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"VY8JAh\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Mkfqkk\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"hoyB8X\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Mwuuis\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"XeINaF\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"6\" [label = \"6QZBdl\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"7\" [label = \"iX4jFx\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"8\" [label = \"cW6pzT\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"9\" [label = \"euAdCV\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"10\" [label = \"NLZABf\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"11\" [label = \"smaZRj\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"12\" [label = \"umqCK1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"13\" [label = \"1IlGbV\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"14\" [label = \"pyQq9R\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"1\"->\"2\" \n  \"2\"->\"10\" \n  \"10\"->\"12\" \n  \"8\"->\"12\" \n  \"8\"->\"11\" \n  \"9\"->\"11\" \n  \"1\"->\"9\" \n  \"3\"->\"6\" \n  \"6\"->\"7\" \n  \"5\"->\"7\" \n  \"4\"->\"5\" \n  \"3\"->\"4\" \n  \"11\"->\"13\" \n  \"13\"->\"14\" \n  \"9\"->\"14\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(op)</a></code></pre></div>
 </div>
 </div>
   </div>
