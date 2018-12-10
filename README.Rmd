@@ -88,42 +88,7 @@ plot(ggeog, vertex.size = 9, main = "layout as geography", vertex.label.dist= .7
 plot(gtopo, vertex.size = 9, main = "layout as topology", vertex.label.dist= .7, vertex.label.cex = 1)
 
 ```
-```{r}
-library(ggraph)
-g <- as.igraph(line)
-ggraph(g) + geom_edge_arc()
 
-ggraph(g) + geom_edge_link() 
-
-
-```
-
-
-The geom edge link is essentially the same as the map data. 
-
-```{r}
-library(ggraph)
-ggraph(ggeog) + geom_edge_arc()
-
-ggraph(ggeog) + geom_edge_link() 
-
-## reconstruct the sf object as a ggplot
-## using the sc decomposition forms that scgraph uses
-sc_model <- SC(minimal_mesh)
-library(dplyr)
-## a kind of db-fortify
-tab <- with(sc_model, 
-     object %>% inner_join(object_link_edge) %>% inner_join(edge))
-## this used to be PATH based, so was join-able, need a tidier way to express this
-## cascade
-tab$x1 <-sc_model$vertex$x_[ match(tab$.vx0, sc_model$vertex$vertex_)]
-tab$y1 <-sc_model$vertex$y_[ match(tab$.vx0, sc_model$vertex$vertex_)]
-tab$x2 <-sc_model$vertex$x_[ match(tab$.vx1, sc_model$vertex$vertex_)]
-tab$y2 <-sc_model$vertex$y_[ match(tab$.vx1, sc_model$vertex$vertex_)]
-
-library(ggplot2)
-ggplot(tab, aes(x1, y1, xend = x2, yend = y2, col = object_)) + geom_segment()
-```
 
 
 Example with DiagrammeR. 
@@ -147,3 +112,45 @@ render_graph(g)
 options(op)
 
 ```
+
+
+
+
+
+```{r}
+library(ggraph)
+g <- as.igraph(line)
+ggraph(g) + geom_edge_arc()
+
+ggraph(g) + geom_edge_link() 
+
+
+```
+
+
+The geom edge link is essentially the same as the map data. 
+
+```{r}
+library(ggraph)
+ggraph(ggeog) + geom_edge_arc()
+
+ggraph(ggeog) + geom_edge_link() 
+
+## reconstruct the sf object as a ggplot
+## using the sc decomposition forms that scgraph uses
+library(dplyr)
+## a kind of db-fortify
+tab <- with(sc_model, 
+     object %>% inner_join(object_link_edge) %>% inner_join(edge))
+## this used to be PATH based, so was join-able, need a tidier way to express this
+## cascade
+tab$x1 <-sc_model$vertex$x_[ match(tab$.vx0, sc_model$vertex$vertex_)]
+tab$y1 <-sc_model$vertex$y_[ match(tab$.vx0, sc_model$vertex$vertex_)]
+tab$x2 <-sc_model$vertex$x_[ match(tab$.vx1, sc_model$vertex$vertex_)]
+tab$y2 <-sc_model$vertex$y_[ match(tab$.vx1, sc_model$vertex$vertex_)]
+
+library(ggplot2)
+ggplot(tab, aes(x1, y1, xend = x2, yend = y2, col = object_)) + geom_segment()
+```
+
+

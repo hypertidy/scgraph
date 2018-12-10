@@ -103,10 +103,39 @@ plot(gtopo, vertex.size = 9, main = "layout as topology", vertex.label.dist= .7,
 
 ![](README-unnamed-chunk-2-2.png)<!-- -->
 
+Example with DiagrammeR.
+
+``` r
+library(DiagrammeR)
+library(silicate)
+op <- options(warn = -1)  ## ugly warning from rlang
+g <-
+  create_graph() %>%
+  add_nodes_from_table(
+    table = sc_model$vertex,
+    label_col = vertex_) %>% 
+  add_edges_from_table(
+    table = sc_model$edge,
+    from_col = .vx0,
+    to_col = .vx1, 
+    from_to_map = label)
+
+render_graph(g)
+```
+
+![](README-unnamed-chunk-3-1.png)<!-- -->
+
+``` r
+options(op)
+```
+
 ``` r
 library(ggraph)
 #> 
 #> Attaching package: 'ggraph'
+#> The following object is masked from 'package:DiagrammeR':
+#> 
+#>     get_edges
 #> The following object is masked from 'package:sp':
 #> 
 #>     geometry
@@ -115,7 +144,7 @@ ggraph(g) + geom_edge_arc()
 #> Using `nicely` as default layout
 ```
 
-![](README-unnamed-chunk-3-1.png)<!-- -->
+![](README-unnamed-chunk-4-1.png)<!-- -->
 
 ``` r
 
@@ -123,7 +152,7 @@ ggraph(g) + geom_edge_link()
 #> Using `nicely` as default layout
 ```
 
-![](README-unnamed-chunk-3-2.png)<!-- -->
+![](README-unnamed-chunk-4-2.png)<!-- -->
 
 The geom edge link is essentially the same as the map data.
 
@@ -133,7 +162,7 @@ ggraph(ggeog) + geom_edge_arc()
 #> Using `nicely` as default layout
 ```
 
-![](README-unnamed-chunk-4-1.png)<!-- -->
+![](README-unnamed-chunk-5-1.png)<!-- -->
 
 ``` r
 
@@ -141,13 +170,12 @@ ggraph(ggeog) + geom_edge_link()
 #> Using `nicely` as default layout
 ```
 
-![](README-unnamed-chunk-4-2.png)<!-- -->
+![](README-unnamed-chunk-5-2.png)<!-- -->
 
 ``` r
 
 ## reconstruct the sf object as a ggplot
 ## using the sc decomposition forms that scgraph uses
-sc_model <- SC(minimal_mesh)
 library(dplyr)
 ## a kind of db-fortify
 tab <- with(sc_model, 
@@ -165,31 +193,4 @@ library(ggplot2)
 ggplot(tab, aes(x1, y1, xend = x2, yend = y2, col = object_)) + geom_segment()
 ```
 
-![](README-unnamed-chunk-4-3.png)<!-- -->
-
-Example with DiagrammeR.
-
-``` r
-library(DiagrammeR)
-#> 
-#> Attaching package: 'DiagrammeR'
-#> The following object is masked from 'package:ggraph':
-#> 
-#>     get_edges
-library(silicate)
-op <- options(warn = -1)
-g <-
-  create_graph() %>%
-  add_nodes_from_table(
-    table = sc_model$vertex,
-    label_col = vertex_) %>% 
-  add_edges_from_table(
-    table = sc_model$edge,
-    from_col = .vx0,
-    to_col = .vx1, 
-    from_to_map = label)
-
-render_graph(g)
-```
-
-![](README-unnamed-chunk-5-1.png)<!-- -->
+![](README-unnamed-chunk-5-3.png)<!-- -->

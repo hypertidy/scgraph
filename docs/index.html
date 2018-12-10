@@ -124,72 +124,69 @@
 <p><img src="README-unnamed-chunk-2-1.png" width="700"></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(gtopo, <span class="dt">vertex.size =</span> <span class="dv">9</span>, <span class="dt">main =</span> <span class="st">"layout as topology"</span>, <span class="dt">vertex.label.dist=</span> <span class="fl">.7</span>, <span class="dt">vertex.label.cex =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p><img src="README-unnamed-chunk-2-2.png" width="700"></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggraph)</a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="co">#&gt; Attaching package: 'ggraph'</span></a>
-<a class="sourceLine" id="cb7-4" title="4"><span class="co">#&gt; The following object is masked from 'package:sp':</span></a>
-<a class="sourceLine" id="cb7-5" title="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt;     geometry</span></a>
-<a class="sourceLine" id="cb7-7" title="7">g &lt;-<span class="st"> </span><span class="kw"><a href="reference/as.igraph.html">as.igraph</a></span>(line)</a>
-<a class="sourceLine" id="cb7-8" title="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/ggraph">ggraph</a></span>(g) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_edge_arc">geom_edge_arc</a></span>()</a>
-<a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt; Using `nicely` as default layout</span></a></code></pre></div>
-<p><img src="README-unnamed-chunk-3-1.png" width="700"></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"></a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/ggraph">ggraph</a></span>(g) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_edge_link">geom_edge_link</a></span>() </a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="co">#&gt; Using `nicely` as default layout</span></a></code></pre></div>
-<p><img src="README-unnamed-chunk-3-2.png" width="700"></p>
-<p>The geom edge link is essentially the same as the map data.</p>
+<p>Example with DiagrammeR.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(DiagrammeR)</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(silicate)</a>
+<a class="sourceLine" id="cb7-3" title="3">op &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">warn =</span> <span class="dv">-1</span>)  <span class="co">## ugly warning from rlang</span></a>
+<a class="sourceLine" id="cb7-4" title="4">g &lt;-</a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/DiagrammeR/topics/create_graph">create_graph</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/DiagrammeR/topics/add_nodes_from_table">add_nodes_from_table</a></span>(</a>
+<a class="sourceLine" id="cb7-7" title="7">    <span class="dt">table =</span> sc_model<span class="op">$</span>vertex,</a>
+<a class="sourceLine" id="cb7-8" title="8">    <span class="dt">label_col =</span> vertex_) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-9" title="9"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/DiagrammeR/topics/add_edges_from_table">add_edges_from_table</a></span>(</a>
+<a class="sourceLine" id="cb7-10" title="10">    <span class="dt">table =</span> sc_model<span class="op">$</span>edge,</a>
+<a class="sourceLine" id="cb7-11" title="11">    <span class="dt">from_col =</span> .vx0,</a>
+<a class="sourceLine" id="cb7-12" title="12">    <span class="dt">to_col =</span> .vx1, </a>
+<a class="sourceLine" id="cb7-13" title="13">    <span class="dt">from_to_map =</span> label)</a>
+<a class="sourceLine" id="cb7-14" title="14"></a>
+<a class="sourceLine" id="cb7-15" title="15"><span class="kw"><a href="https://www.rdocumentation.org/packages/DiagrammeR/topics/render_graph">render_graph</a></span>(g)</a></code></pre></div>
+<div id="htmlwidget-b124d4c56cd10239d0e6" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b124d4c56cd10239d0e6">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"HzRLFN\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"kOOkNm\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"WvAcEM\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"aWtchB\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"DhPYnx\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"6\" [label = \"QFJfgR\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"7\" [label = \"YKBBCK\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"8\" [label = \"z3eHhK\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"9\" [label = \"1aGdXe\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"10\" [label = \"muxY7s\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"11\" [label = \"wzVzPk\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"12\" [label = \"W76vMg\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"13\" [label = \"ZqPj1X\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"14\" [label = \"rfdbcz\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"1\"->\"2\" \n  \"2\"->\"10\" \n  \"10\"->\"12\" \n  \"8\"->\"12\" \n  \"8\"->\"11\" \n  \"9\"->\"11\" \n  \"1\"->\"9\" \n  \"3\"->\"6\" \n  \"6\"->\"7\" \n  \"5\"->\"7\" \n  \"4\"->\"5\" \n  \"3\"->\"4\" \n  \"11\"->\"13\" \n  \"13\"->\"14\" \n  \"9\"->\"14\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(op)</a></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggraph)</a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/ggraph">ggraph</a></span>(ggeog) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_edge_arc">geom_edge_arc</a></span>()</a>
-<a class="sourceLine" id="cb9-3" title="3"><span class="co">#&gt; Using `nicely` as default layout</span></a></code></pre></div>
+<a class="sourceLine" id="cb9-2" title="2"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb9-3" title="3"><span class="co">#&gt; Attaching package: 'ggraph'</span></a>
+<a class="sourceLine" id="cb9-4" title="4"><span class="co">#&gt; The following object is masked from 'package:DiagrammeR':</span></a>
+<a class="sourceLine" id="cb9-5" title="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb9-6" title="6"><span class="co">#&gt;     get_edges</span></a>
+<a class="sourceLine" id="cb9-7" title="7"><span class="co">#&gt; The following object is masked from 'package:sp':</span></a>
+<a class="sourceLine" id="cb9-8" title="8"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb9-9" title="9"><span class="co">#&gt;     geometry</span></a>
+<a class="sourceLine" id="cb9-10" title="10">g &lt;-<span class="st"> </span><span class="kw"><a href="reference/as.igraph.html">as.igraph</a></span>(line)</a>
+<a class="sourceLine" id="cb9-11" title="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/ggraph">ggraph</a></span>(g) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_edge_arc">geom_edge_arc</a></span>()</a>
+<a class="sourceLine" id="cb9-12" title="12"><span class="co">#&gt; Using `nicely` as default layout</span></a></code></pre></div>
 <p><img src="README-unnamed-chunk-4-1.png" width="700"></p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"></a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/ggraph">ggraph</a></span>(ggeog) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_edge_link">geom_edge_link</a></span>() </a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/ggraph">ggraph</a></span>(g) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_edge_link">geom_edge_link</a></span>() </a>
 <a class="sourceLine" id="cb10-3" title="3"><span class="co">#&gt; Using `nicely` as default layout</span></a></code></pre></div>
 <p><img src="README-unnamed-chunk-4-2.png" width="700"></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"></a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="co">## reconstruct the sf object as a ggplot</span></a>
-<a class="sourceLine" id="cb11-3" title="3"><span class="co">## using the sc decomposition forms that scgraph uses</span></a>
-<a class="sourceLine" id="cb11-4" title="4">sc_model &lt;-<span class="st"> </span><span class="kw"><a href="reference/SC.html">SC</a></span>(minimal_mesh)</a>
-<a class="sourceLine" id="cb11-5" title="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb11-6" title="6"><span class="co">## a kind of db-fortify</span></a>
-<a class="sourceLine" id="cb11-7" title="7">tab &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/with">with</a></span>(sc_model, </a>
-<a class="sourceLine" id="cb11-8" title="8">     object <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">inner_join</a></span>(object_link_edge) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">inner_join</a></span>(edge))</a>
-<a class="sourceLine" id="cb11-9" title="9"><span class="co">#&gt; Joining, by = "object_"</span></a>
-<a class="sourceLine" id="cb11-10" title="10"><span class="co">#&gt; Joining, by = "edge_"</span></a>
-<a class="sourceLine" id="cb11-11" title="11"><span class="co">## this used to be PATH based, so was join-able, need a tidier way to express this</span></a>
-<a class="sourceLine" id="cb11-12" title="12"><span class="co">## cascade</span></a>
-<a class="sourceLine" id="cb11-13" title="13">tab<span class="op">$</span>x1 &lt;-sc_model<span class="op">$</span>vertex<span class="op">$</span>x_[ <span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/match">match</a></span>(tab<span class="op">$</span>.vx0, sc_model<span class="op">$</span>vertex<span class="op">$</span>vertex_)]</a>
-<a class="sourceLine" id="cb11-14" title="14">tab<span class="op">$</span>y1 &lt;-sc_model<span class="op">$</span>vertex<span class="op">$</span>y_[ <span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/match">match</a></span>(tab<span class="op">$</span>.vx0, sc_model<span class="op">$</span>vertex<span class="op">$</span>vertex_)]</a>
-<a class="sourceLine" id="cb11-15" title="15">tab<span class="op">$</span>x2 &lt;-sc_model<span class="op">$</span>vertex<span class="op">$</span>x_[ <span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/match">match</a></span>(tab<span class="op">$</span>.vx1, sc_model<span class="op">$</span>vertex<span class="op">$</span>vertex_)]</a>
-<a class="sourceLine" id="cb11-16" title="16">tab<span class="op">$</span>y2 &lt;-sc_model<span class="op">$</span>vertex<span class="op">$</span>y_[ <span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/match">match</a></span>(tab<span class="op">$</span>.vx1, sc_model<span class="op">$</span>vertex<span class="op">$</span>vertex_)]</a>
-<a class="sourceLine" id="cb11-17" title="17"></a>
-<a class="sourceLine" id="cb11-18" title="18"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb11-19" title="19"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(tab, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x1, y1, <span class="dt">xend =</span> x2, <span class="dt">yend =</span> y2, <span class="dt">col =</span> object_)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span>()</a></code></pre></div>
-<p><img src="README-unnamed-chunk-4-3.png" width="700"></p>
-<p>Example with DiagrammeR.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(DiagrammeR)</a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb12-3" title="3"><span class="co">#&gt; Attaching package: 'DiagrammeR'</span></a>
-<a class="sourceLine" id="cb12-4" title="4"><span class="co">#&gt; The following object is masked from 'package:ggraph':</span></a>
-<a class="sourceLine" id="cb12-5" title="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb12-6" title="6"><span class="co">#&gt;     get_edges</span></a>
-<a class="sourceLine" id="cb12-7" title="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(silicate)</a>
-<a class="sourceLine" id="cb12-8" title="8">op &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">warn =</span> <span class="dv">-1</span>)  <span class="co">## ugly warning from rlang</span></a>
-<a class="sourceLine" id="cb12-9" title="9">g &lt;-</a>
-<a class="sourceLine" id="cb12-10" title="10"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/DiagrammeR/topics/create_graph">create_graph</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-11" title="11"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/DiagrammeR/topics/add_nodes_from_table">add_nodes_from_table</a></span>(</a>
-<a class="sourceLine" id="cb12-12" title="12">    <span class="dt">table =</span> sc_model<span class="op">$</span>vertex,</a>
-<a class="sourceLine" id="cb12-13" title="13">    <span class="dt">label_col =</span> vertex_) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb12-14" title="14"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/DiagrammeR/topics/add_edges_from_table">add_edges_from_table</a></span>(</a>
-<a class="sourceLine" id="cb12-15" title="15">    <span class="dt">table =</span> sc_model<span class="op">$</span>edge,</a>
-<a class="sourceLine" id="cb12-16" title="16">    <span class="dt">from_col =</span> .vx0,</a>
-<a class="sourceLine" id="cb12-17" title="17">    <span class="dt">to_col =</span> .vx1, </a>
-<a class="sourceLine" id="cb12-18" title="18">    <span class="dt">from_to_map =</span> label)</a>
-<a class="sourceLine" id="cb12-19" title="19"></a>
-<a class="sourceLine" id="cb12-20" title="20"><span class="kw"><a href="https://www.rdocumentation.org/packages/DiagrammeR/topics/render_graph">render_graph</a></span>(g)</a></code></pre></div>
-<div id="htmlwidget-4406be778524581aad67" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4406be778524581aad67">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"VY8JAh\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"Mkfqkk\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"hoyB8X\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"Mwuuis\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"XeINaF\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"6\" [label = \"6QZBdl\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"7\" [label = \"iX4jFx\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"8\" [label = \"cW6pzT\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"9\" [label = \"euAdCV\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"10\" [label = \"NLZABf\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"11\" [label = \"smaZRj\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"12\" [label = \"umqCK1\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"13\" [label = \"1IlGbV\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"14\" [label = \"pyQq9R\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"1\"->\"2\" \n  \"2\"->\"10\" \n  \"10\"->\"12\" \n  \"8\"->\"12\" \n  \"8\"->\"11\" \n  \"9\"->\"11\" \n  \"1\"->\"9\" \n  \"3\"->\"6\" \n  \"6\"->\"7\" \n  \"5\"->\"7\" \n  \"4\"->\"5\" \n  \"3\"->\"4\" \n  \"11\"->\"13\" \n  \"13\"->\"14\" \n  \"9\"->\"14\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(op)</a></code></pre></div>
+<p>The geom edge link is essentially the same as the map data.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggraph)</a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/ggraph">ggraph</a></span>(ggeog) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_edge_arc">geom_edge_arc</a></span>()</a>
+<a class="sourceLine" id="cb11-3" title="3"><span class="co">#&gt; Using `nicely` as default layout</span></a></code></pre></div>
+<p><img src="README-unnamed-chunk-5-1.png" width="700"></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"></a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/ggraph">ggraph</a></span>(ggeog) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_edge_link">geom_edge_link</a></span>() </a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="co">#&gt; Using `nicely` as default layout</span></a></code></pre></div>
+<p><img src="README-unnamed-chunk-5-2.png" width="700"></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"></a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="co">## reconstruct the sf object as a ggplot</span></a>
+<a class="sourceLine" id="cb13-3" title="3"><span class="co">## using the sc decomposition forms that scgraph uses</span></a>
+<a class="sourceLine" id="cb13-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb13-5" title="5"><span class="co">## a kind of db-fortify</span></a>
+<a class="sourceLine" id="cb13-6" title="6">tab &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/with">with</a></span>(sc_model, </a>
+<a class="sourceLine" id="cb13-7" title="7">     object <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">inner_join</a></span>(object_link_edge) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">inner_join</a></span>(edge))</a>
+<a class="sourceLine" id="cb13-8" title="8"><span class="co">#&gt; Joining, by = "object_"</span></a>
+<a class="sourceLine" id="cb13-9" title="9"><span class="co">#&gt; Joining, by = "edge_"</span></a>
+<a class="sourceLine" id="cb13-10" title="10"><span class="co">## this used to be PATH based, so was join-able, need a tidier way to express this</span></a>
+<a class="sourceLine" id="cb13-11" title="11"><span class="co">## cascade</span></a>
+<a class="sourceLine" id="cb13-12" title="12">tab<span class="op">$</span>x1 &lt;-sc_model<span class="op">$</span>vertex<span class="op">$</span>x_[ <span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/match">match</a></span>(tab<span class="op">$</span>.vx0, sc_model<span class="op">$</span>vertex<span class="op">$</span>vertex_)]</a>
+<a class="sourceLine" id="cb13-13" title="13">tab<span class="op">$</span>y1 &lt;-sc_model<span class="op">$</span>vertex<span class="op">$</span>y_[ <span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/match">match</a></span>(tab<span class="op">$</span>.vx0, sc_model<span class="op">$</span>vertex<span class="op">$</span>vertex_)]</a>
+<a class="sourceLine" id="cb13-14" title="14">tab<span class="op">$</span>x2 &lt;-sc_model<span class="op">$</span>vertex<span class="op">$</span>x_[ <span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/match">match</a></span>(tab<span class="op">$</span>.vx1, sc_model<span class="op">$</span>vertex<span class="op">$</span>vertex_)]</a>
+<a class="sourceLine" id="cb13-15" title="15">tab<span class="op">$</span>y2 &lt;-sc_model<span class="op">$</span>vertex<span class="op">$</span>y_[ <span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/match">match</a></span>(tab<span class="op">$</span>.vx1, sc_model<span class="op">$</span>vertex<span class="op">$</span>vertex_)]</a>
+<a class="sourceLine" id="cb13-16" title="16"></a>
+<a class="sourceLine" id="cb13-17" title="17"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb13-18" title="18"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(tab, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x1, y1, <span class="dt">xend =</span> x2, <span class="dt">yend =</span> y2, <span class="dt">col =</span> object_)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span>()</a></code></pre></div>
+<p><img src="README-unnamed-chunk-5-3.png" width="700"></p>
 </div>
 </div>
   </div>
