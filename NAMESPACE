@@ -2,6 +2,7 @@
 
 S3method(SC,tbl_graph)
 S3method(as.igraph,SC)
+S3method(as.igraph,SC0)
 S3method(as.igraph,sf)
 S3method(as_tbl_graph,SC)
 S3method(as_tbl_graph,sf)

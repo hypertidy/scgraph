@@ -5,6 +5,7 @@
 \alias{as.igraph.SC}
 \alias{as.igraph.sf}
 \alias{sc_as_igraph}
+\alias{as.igraph.SC0}
 \title{Convert model to a graph.}
 \usage{
 \method{as.igraph}{SC}(x, ..., layout = TRUE)
@@ -12,6 +13,8 @@
 \method{as.igraph}{sf}(x, ..., layout = TRUE)
 
 sc_as_igraph(x, ..., layout = TRUE)
+
+\method{as.igraph}{SC0}(x, ..., layout = TRUE)
 }
 \arguments{
 \item{x}{input model}
